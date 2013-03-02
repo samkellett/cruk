@@ -35,7 +35,7 @@ class Point
   
   public float y()
   {
-    return this.y();
+    return this.y;
   }
   
   public void setY(float y)

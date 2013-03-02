@@ -7,7 +7,7 @@ int y;
 Sprite sprite;
 Score score;
 public static PImage coin;
-PImage background;
+ScrollingBackground background;
 
 void setup()
 {
@@ -18,8 +18,7 @@ void setup()
   //background(57,181,74);
   
   coin = loadImage("Coin3.png");
-  background = loadImage("grass_background.png");
-  background(background);
+  background = new ScrollingBackground();
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
 
@@ -33,6 +32,7 @@ void setup()
 
 void draw()
 {
+  background.draw();
   
   if (keyPressed)
   {
@@ -42,7 +42,7 @@ void draw()
       case RIGHT: sprite.right(); score.score += 5; break;
     }
   }
-  background(background);
+  
   for(Point p : points) {
 //    if (underSprite(p.x(),p.y()))
 //    {
