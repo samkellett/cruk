@@ -9,11 +9,11 @@ float mean_max = MIN_FLOAT;
 
 void setup()
 { 
- size(800, 300);
+ size(300, 800);
  
  background(255);
  
- plot("S3_BAF_Chrom10.txt", height, 0);
+ plot("S3_BAF_Chrom22.txt", width, 0);
   
 /* fill(0);
  rect(0, height/2, width, height/2);
@@ -42,9 +42,9 @@ void plot(String file, int y1, int y2)
  }
  
  for (int row = 0; row < data.getRowCount(); row++) {
-   float x = map(data.getFloatAt(row, 1), position_min, position_max, 0, width);
-   float y = map(data.getFloatAt(row, 2), ratio_min, ratio_max, y1, y2);
+   float y = map(data.getFloatAt(row, 1), position_min, position_max, 0, height);
+   float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, y1, y2);
   
-   point(x, y); 
+   ellipse(x, y, 2, 2); 
  }  
 }
