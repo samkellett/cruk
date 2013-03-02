@@ -1,5 +1,4 @@
 Parser parser;
-Path path;
 
 ArrayList<Point> points;
 
