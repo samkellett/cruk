@@ -1,7 +1,11 @@
+import java.io.*;
+
 Parser parser;
 
 ArrayList<Point> points;
-ArrayList<Point> tracker;
+ArrayList<Float> tracker_xs;
+ArrayList<Float> tracker_ys;
+
 int y;
 
 Sprite sprite;
@@ -11,7 +15,7 @@ ScrollingBackground background;
 
 void setup()
 {
-  size(480, 800, OPENGL);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -26,7 +30,9 @@ void setup()
   // Initialise score to 0;
   score = new Score(0);
   
-  tracker = new ArrayList<Point>();
+  tracker_xs = new ArrayList<Float>();
+  tracker_ys = new ArrayList<Float>();
+  
   y = 0;
 }
 
@@ -59,12 +65,27 @@ void draw()
   sprite.draw();
   score.draw();
   
-  tracker.add(new Point(sprite.x, y));
+  tracker_xs.add(sprite.x);
+  tracker_ys.add((float)y);
+  
   y += 7;
+
+  //println(tracker.get(tracker.size()-1));
 }
 
 void keyPressed()
 {
- 
+  if(keyCode == ALT) {
+    try {
+      FileWriter writer = new FileWriter("output.txt");
+     
+      for(int i = 0; i < tracker_xs.size(); i++) {
+        writer.write(tracker_xs.get(i) + "\t" + tracker_ys.get(i) + System.getProperty("line.separator")); 
+      }
+     
+      writer.close();
+      println("Done");
+    }catch (Exception e) {println("Fucked");} 
+  } 
 }
 
