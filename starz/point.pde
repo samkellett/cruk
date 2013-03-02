@@ -18,7 +18,7 @@ public class Point
     if(this.y > -10 && this.y < height+10) {
       noStroke();
       fill(0, 255, 0, 50);
-      ellipse(this.x, this.y, 20.0f, 20.0f);
+      ellipse(this.x, this.y, 5.0f, 5.0f);
     }
   }
   
