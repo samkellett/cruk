@@ -8,10 +8,20 @@ float mean_min = MAX_FLOAT;
 float mean_max = MIN_FLOAT;
 
 void setup()
-{
+{ 
  size(800, 600);
 
- data = new Table("S3_Seg_Chrom1.txt");
+  plot("S3_BAF_Chrom1.txt", height / 2, 0);
+  plot("S3_Seg_Chrom1.txt", height, height / 2);
+}
+
+void draw()
+{ 
+}
+
+void plot(String file, int y1, int y2)
+{
+  data = new Table(file);
  
  for (int row = 0; row < data.getRowCount(); row++) {
    position_min = min(position_min, data.getFloatAt(row, 1));
@@ -26,12 +36,8 @@ void setup()
  
  for (int row = 0; row < data.getRowCount(); row++) {
    float x = map(data.getFloatAt(row, 1), position_min, position_max, 0, width);
-   float y = map(data.getFloatAt(row, 2), ratio_min, ratio_max, height, 0);
+   float y = map(data.getFloatAt(row, 2), ratio_min, ratio_max, y1, y2);
   
    point(x, y); 
- } 
-}
-
-void draw()
-{ 
+ }  
 }
