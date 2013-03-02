@@ -14,7 +14,7 @@ void setup()
  
  background(255);
  
- plot("S3_BAF_Chrom1.txt", width, 0);
+ plot("S3_BAF_Chrom7.txt", width, 0);
  
  path = new Table("output.txt");
  
