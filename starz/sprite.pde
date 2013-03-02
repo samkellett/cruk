@@ -31,4 +31,14 @@ class Sprite
       x -= 15;
     }
   }
+  
+  public float x()
+  {
+    return this.x;  
+  }
+  
+  public float y()
+  {
+    return this.y;  
+  }
 }

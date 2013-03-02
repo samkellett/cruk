@@ -1,4 +1,4 @@
-class Point
+public class Point
 {
   float x, y;
   
@@ -10,15 +10,15 @@ class Point
   
   public void update()
   {
-    this.y += 7;
+    this.y += 2;
   }
   
   public void render()
   {
     if(this.y > -10 && this.y < height+10) {
-      stroke(0);
-      fill(234,286,33);
-      ellipse(this.x, this.y, 15.0f, 15.0f);
+      noStroke();
+      fill(#EDEDED, 80);
+      ellipse(this.x, this.y, 100.0f, 100.0f);
     }
   }
   
