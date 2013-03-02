@@ -1,4 +1,4 @@
-class Parser
+public class Parser
 {
   Table data;
   
@@ -13,12 +13,12 @@ class Parser
   
   ArrayList<Point> points;
   
-  Parser()
+  public Parser()
   {
     points = new ArrayList<Point>();  
   }
 
-  ArrayList<Point> points(String file)
+  public ArrayList<Point> points(String file)
   {
      data = new Table(file);
      
@@ -32,7 +32,7 @@ class Parser
      
      for (int row = 0; row < data.getRowCount(); row++) {
        float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
-       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height*300, height);
+       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height, height);
        
        Point p = new Point(x, y);
        points.add(p);
