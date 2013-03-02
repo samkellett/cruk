@@ -73,7 +73,7 @@ void plot(String file, int y1, int y2)
      y = y/count;
    }
    
-   vertex(x, y)
+   vertex(x, y);
  }
  endShape();
  
