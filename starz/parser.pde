@@ -9,7 +9,7 @@ class Parser
   float mean_min = MAX_FLOAT;
   float mean_max = MIN_FLOAT;
   
-  private int THRESHOLD = 20;
+  private int THRESHOLD = 40;
   
   ArrayList<Point> points;
   
@@ -32,7 +32,7 @@ class Parser
      
      for (int row = 0; row < data.getRowCount(); row++) {
        float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
-       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height*300, height);
+       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height*250, height);
        
        Point p = new Point(x, y);
        points.add(p);
