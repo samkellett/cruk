@@ -1,11 +1,10 @@
 Parser parser;
+Player player;
 ArrayList<Point> points;
-
-Sprite sprite;
 
 void setup()
 {
-  size(480, 600);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -14,7 +13,7 @@ void setup()
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom4.txt");
 
-  sprite = new Sprite("sprite.gif",240.0,600.0);
+  player = new Player(width / 2 ,height - 200);
 }
 
 void draw()
@@ -25,15 +24,31 @@ void draw()
     points.get(i).render();
     points.get(i).update(); 
   }
-  sprite.draw();
+  
+  player.update();
+  player.render();
+
+  if(keyPressed) {
+    if(keyCode == LEFT) {
+      player.strafe(-4);
+    }
+    
+    if(keyCode == RIGHT) {
+      player.strafe(4);
+    }
+    
+    if(key == 32) {
+      player.dive();
+    }  
+  }
 }
 
-void keyPressed()
+void keyReleased()
 {
-  switch (keyCode)
-  {
-    case LEFT: sprite.left(); break;
-    case RIGHT: sprite.right(); break;
+  if(keyCode == 32) {
+    player.setDive(false);
+  }else{
+    player.setStrafe(false);
   }
 }
 
