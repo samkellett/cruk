@@ -9,16 +9,17 @@ float mean_max = MIN_FLOAT;
 
 void setup()
 { 
- size(800, 600);
+ size(800, 300);
  
  background(255);
  
- plot("S3_BAF_Chrom1.txt", height / 2, 0);
+ plot("S3_BAF_Chrom10.txt", height, 0);
   
- fill(0);
+/* fill(0);
  rect(0, height/2, width, height/2);
  stroke(255);
  plot("S3_Seg_Chrom1.txt", height, height / 2);
+*/
 }
 
 void draw()
