@@ -33,28 +33,30 @@ void setup()
 void draw()
 {
   background.draw();
-  
   if (keyPressed)
   {
      switch (keyCode)
     {
-      case LEFT: sprite.left(); score.score += 5; break;
-      case RIGHT: sprite.right(); score.score += 5; break;
+      case LEFT: sprite.left(); break;
+      case RIGHT: sprite.right(); break;
     }
   }
   
   for(Point p : points) {
-//    if (underSprite(p.x(),p.y()))
-//    {
+   
+    if (sprite.underSprite(p.x(),p.y()))
+    {
+      if (!p.hidden())
+      {
+        score.score += 1;
+      }
+      p.hide();
+    }
        
     p.render();
     p.update();
   }
   sprite.draw();
-  if (random(100) > 50)
-  {
-    score.score += 1;
-  }
   score.draw();
   
   tracker.add(new Point(sprite.x, y));

@@ -4,9 +4,12 @@ class Sprite
   
   private int imgInt;
   public float x,y;
+  private int spriteWidth, spriteHeight;
   
   public Sprite(String file, float x, float y)
   {
+    spriteWidth = 60;
+    spriteHeight = 120;
     img = new PImage[4];
     img[0] = loadImage("sprite/sprite_1.png");
     img[1] = loadImage("sprite/sprite_2.png");
@@ -19,7 +22,7 @@ class Sprite
   
   public void draw()
   {
-    image(img[imgInt],x-20,y,60,120);
+    image(img[imgInt],x,y,spriteWidth,spriteHeight);
     if (frameCount % 5 == 0)
     {
       if (imgInt < 3) {
@@ -44,5 +47,10 @@ class Sprite
     {
       x -= 4;
     }
+  }
+  
+  public boolean underSprite(float x, float y)
+  {
+    return (x > this.x -30 && x < this.x + this.spriteWidth && y > this.y && y < this.y + this.spriteHeight);
   }
 }

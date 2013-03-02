@@ -1,9 +1,11 @@
 class Point
 {
   float x, y;
+  boolean hidden;
   
   public Point(float x, float y)
   {
+    this.hidden = false;
     this.x = x;
     this.y = y;
   }
@@ -15,7 +17,7 @@ class Point
   
   public void render()
   {
-    if(this.y > -10 && this.y < height+10) {
+    if(!this.hidden && this.y > -10 && this.y < height+10) {
       stroke(0);
       fill(234,286,33);
       //ellipse(this.x, this.y, 15.0f, 15.0f);
@@ -46,5 +48,15 @@ class Point
   public String toString()
   {
     return x + " - " + y;
+  }
+  
+  public void hide()
+  {
+    hidden = true;
+  }
+  
+  public boolean hidden()
+  {
+    return this.hidden;
   }
 }
