@@ -1,4 +1,4 @@
-class Parser
+public class Parser
 {
   Table data;
   
@@ -11,12 +11,12 @@ class Parser
   
   ArrayList<Point> points;
   
-  Parser()
+  public Parser()
   {
     points = new ArrayList<Point>();  
   }
 
-  ArrayList<Point> points(String file)
+  public ArrayList<Point> points(String file)
   {
      data = new Table(file);
      
