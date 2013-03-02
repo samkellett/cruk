@@ -10,7 +10,7 @@ class Point
   
   public void update()
   {
-    this.y += 10;
+    this.y += 2;
   }
   
   public void render()
