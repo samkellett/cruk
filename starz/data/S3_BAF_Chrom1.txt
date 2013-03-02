@@ -1,4 +1,4 @@
-Chr	Position	A488.1217_4.CEL.B.Allele.Freq
+#Chr	Position	A488.1217_4.CEL.B.Allele.Freq
 1	1145994	0.8983
 1	2224111	0.9299
 1	2319424	0.9972
