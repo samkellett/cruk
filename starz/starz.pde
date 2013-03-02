@@ -1,22 +1,40 @@
 Parser parser;
 ArrayList<Point> points;
 
+Sprite sprite;
+
 void setup()
 {
-  size(400, 600);
+  size(480, 800);
   frameRate(60);
-  
-  background(255);
+  //CRUK Green: 57,181,74
+  //CRUK Pink: 243,20,235
+  //background(57,181,74);
   
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
+
+  sprite = new Sprite("sprite.gif",240.0,600.0);
+  
 }
 
 void draw()
 {
-  background(255); 
+  background(57,181,74); 
   for(Point p : points) {
     p.render();
     p.update();
   }
+  sprite.draw();
 }
+
+void keyPressed()
+{
+  switch (keyCode)
+  {
+    case LEFT: sprite.left(); break;
+    case RIGHT: sprite.right(); break;
+  }
+}
+
+
