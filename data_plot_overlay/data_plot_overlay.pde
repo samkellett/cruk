@@ -20,18 +20,15 @@ void setup()
   
   path = new Table("output.txt");
   
-  float x = path.getFloatAt(0, 0);
-  float y = path.getFloatAt(0, 1);
-    
-  ArrayList<Point> lines = new ArrayList<Point>();  
-  lines.add(new Point(x, y);
-      
+  noFill();
   stroke(255, 0, 0);
-  for (int row = 1; row < path.getRowCount(); row++) {
-    if(x != path.getFloatAt(row, 0)) {
-      
-    }
+  beginShape();
+  for (int row = 0; row < path.getRowCount(); row++) {
+    float x = path.getFloatAt(row, 0);
+    float y = path.getFloatAt(row, 1);
+    vertex(x, y);
   }
+  endShape();
 }
 
 void draw()
