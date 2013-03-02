@@ -10,15 +10,15 @@ class Point
   
   public void update()
   {
-    this.y += 2;
+    this.y += 7;
   }
   
   public void render()
   {
     if(this.y > -10 && this.y < height+10) {
       stroke(0);
-      fill(0, 255, 0);
-      ellipse(this.x, this.y, 10.0f, 10.0f);
+      fill(234,286,33);
+      ellipse(this.x, this.y, 15.0f, 15.0f);
     }
   }
   
