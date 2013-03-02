@@ -1,4 +1,5 @@
 Table data;
+Table path;
 
 float position_min = MAX_FLOAT;
 float position_max = MIN_FLOAT;
@@ -9,12 +10,23 @@ float mean_max = MIN_FLOAT;
 
 void setup()
 { 
- size(300, 800);
+ size(480, 800);
  
  background(255);
  
- plot("S3_BAF_Chrom22.txt", width, 0);
-  
+ plot("S3_BAF_Chrom1.txt", width, 0);
+ 
+ path = new Table("output.txt");
+ 
+ noFill();
+ stroke(255, 0, 0);
+ beginShape();
+ for(int i = 0; i < path.getRowCount(); i++) {
+   float x = path.getFloatAt(i, 0);
+   float y = path.getFloatAt(i, 1)/250;
+   vertex(x, y);
+ }
+ endShape();
 /* fill(0);
  rect(0, height/2, width, height/2);
  stroke(255);
@@ -42,7 +54,7 @@ void plot(String file, int y1, int y2)
  }
  
  for (int row = 0; row < data.getRowCount(); row++) {
-   float y = map(data.getFloatAt(row, 1), position_min, position_max, 0, height);
+   float y = map(data.getFloatAt(row, 1), position_min, position_max, height, 0);
    float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, y1, y2);
   
    ellipse(x, y, 2, 2); 
