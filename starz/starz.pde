@@ -7,6 +7,7 @@ int y;
 Sprite sprite;
 Score score;
 public static PImage coin;
+PImage background;
 
 void setup()
 {
@@ -16,7 +17,9 @@ void setup()
   //CRUK Pink: 243,20,235
   //background(57,181,74);
   
-  coin = loadImage("Coin1.gif");
+  coin = loadImage("Coin3.png");
+  background = loadImage("grass_background.png");
+  background(background);
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
 
@@ -39,8 +42,11 @@ void draw()
       case RIGHT: sprite.right(); score.score += 5; break;
     }
   }
-  background(57,181,74); 
+  background(background);
   for(Point p : points) {
+//    if (underSprite(p.x(),p.y()))
+//    {
+       
     p.render();
     p.update();
   }
@@ -59,5 +65,4 @@ void keyPressed()
 {
  
 }
-
 
