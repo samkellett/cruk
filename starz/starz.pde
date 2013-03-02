@@ -1,6 +1,8 @@
 Parser parser;
 
 ArrayList<Point> points;
+ArrayList<Point> tracker;
+int y;
 
 Sprite sprite;
 Score score;
@@ -22,10 +24,13 @@ void setup()
   // Initialise score to 0;
   score = new Score(0);
   
+  tracker = new ArrayList<Point>();
+  y = 0;
 }
 
 void draw()
 {
+  
   if (keyPressed)
   {
      switch (keyCode)
@@ -45,6 +50,9 @@ void draw()
     score.score += 1;
   }
   score.draw();
+  
+  tracker.add(new Point(sprite.x, y));
+  y += 7;
 }
 
 void keyPressed()
