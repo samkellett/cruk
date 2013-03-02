@@ -1,6 +1,5 @@
 Parser parser;
 Path path;
-Player player;
 
 ArrayList<Point> points;
 
