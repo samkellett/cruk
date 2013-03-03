@@ -12,10 +12,11 @@ Sprite sprite;
 Score score;
 public static PImage coin;
 ScrollingBackground background;
+PImage hud;
 
 void setup()
 {
-  size(480, 800);
+  size(480, 800, OPENGL);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -23,10 +24,12 @@ void setup()
   
   coin = loadImage("Coin3.png");
   background = new ScrollingBackground();
+  hud = loadImage("hud.png");
+  
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
 
-  sprite = new Sprite("sprite2.gif",240.0,600.0);
+  sprite = new Sprite("sprite2.gif",240.0,550.0);
   // Initialise score to 0;
   score = new Score(0);
   
@@ -63,7 +66,8 @@ void draw()
     p.update();
   }
   sprite.draw();
-  score.draw();
+  
+  showScoreHud();
   
   tracker_xs.add(sprite.x);
   tracker_ys.add((float)y);
@@ -71,6 +75,12 @@ void draw()
   y += 7;
 
   //println(tracker.get(tracker.size()-1));
+}
+
+void showScoreHud()
+{
+  image(hud,0,height - hud.height);
+  score.draw(); 
 }
 
 void keyPressed()
