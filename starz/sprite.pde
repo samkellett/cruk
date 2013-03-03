@@ -5,6 +5,8 @@ class Sprite
   private int i;
   public float x, y;
   
+  PImage[] image;
+  
   public Sprite(float x, float y)
   {   
     this.skins = new Skin[3];
@@ -15,6 +17,22 @@ class Sprite
     this.i = 0;
     this.x = x;
     this.y = y;
+  }
+  
+  public Sprite(PImage[] image, float x, float y)
+  {
+    this.image = image;
+    this.x = x;
+    this.y = y;
+  }
+  
+  public void draw()
+  {
+    image(image[i], this.x, this.y);  
+    if(frameCount % 5 == 0) {
+      i++;
+      i %= image.length;
+    }  
   }
   
   public void update()
@@ -47,6 +65,26 @@ class Sprite
     {
       x -= 4;
     }
+  }
+  
+  public void randomMove()
+  {
+    if (random(1) > 0.5) 
+    {
+      left();
+      left();
+    }
+    else
+    {
+      right();
+      right();
+    }
+  }
+    
+  
+  public void down()
+  {
+    y += 5;
   }
   
   public boolean underSprite(float x, float y)

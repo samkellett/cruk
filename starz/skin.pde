@@ -12,7 +12,7 @@ interface Skin
   
   public abstract int getHeight();
   
-  //public abstract PImage[] getEnemy();
+  public abstract PImage[] getEnemy();
  
   //public abstract PImage[] getEnemy2();
 }
