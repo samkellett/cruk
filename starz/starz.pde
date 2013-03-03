@@ -60,7 +60,7 @@ void draw()
   }
   
   sprite.draw();
-  if (frameCount % 1000 == 0)
+  if (frameCount % 700 == 0)
   {
     enemy = new Sprite(skin.getEnemy(), random(50,400), -150);
   }
@@ -131,7 +131,6 @@ void changeSkin(String skinName)
   {
     sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
   }
-  enemy = new Sprite(skin.getEnemy(), random(50,400), -150);
   background = new ScrollingBackground(skin.getBackground());
     
 }
