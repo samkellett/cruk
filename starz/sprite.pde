@@ -21,9 +21,11 @@ class Sprite
     image(img[imgInt],x,y,spriteWidth,spriteHeight);
     if (frameCount % 5 == 0)
     {
-      if (imgInt < 3) {
+      if (imgInt < 3)
+      {
         imgInt++;
-      } else {
+      } else
+      {
         imgInt = 0;
       }
     }
@@ -43,6 +45,26 @@ class Sprite
     {
       x -= 4;
     }
+  }
+  
+  public void randomMove()
+  {
+    if (random(1) > 0.5) 
+    {
+      left();
+      left();
+    }
+    else
+    {
+      right();
+      right();
+    }
+  }
+    
+  
+  public void down()
+  {
+    y += 5;
   }
   
   public boolean underSprite(float x, float y)

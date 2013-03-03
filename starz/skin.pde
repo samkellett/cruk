@@ -6,7 +6,7 @@ interface Skin
   
   public abstract PImage getCoin();
   
-  //public abstract PImage[] getEnemy();
+  public abstract PImage[] getEnemy();
  
   //public abstract PImage[] getEnemy2();
 }

@@ -1,5 +1,4 @@
 import java.io.*;
-
 Parser parser;
 
 ArrayList<Point> points;
@@ -8,6 +7,7 @@ ArrayList<Point> tracker;
 int y;
 
 Sprite sprite;
+Sprite enemy;
 
 public Skin skin;
 
@@ -47,7 +47,6 @@ void draw()
       sprite.right();
     }
   }
-  
   for (Point p : points) {
     if (sprite.underSprite(p.x(), p.y())) {
       if (!p.hidden()) {
@@ -61,6 +60,12 @@ void draw()
   }
   
   sprite.draw();
+  enemy.draw();
+  enemy.down();
+  if (frameCount % 3 == 0)
+  {
+    enemy.randomMove();
+  }
    
   tracker.add(new Point(sprite.x, y));
   y += 7;
@@ -112,6 +117,7 @@ void changeSkin(String skinName)
   {
     sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
   }
+  enemy = new Sprite(skin.getEnemy(), random(50,400), -150);
   background = new ScrollingBackground(skin.getBackground());
     
 }
