@@ -15,6 +15,8 @@ class HUD
   int multiplier;  
   int multi_count;
   
+  int timer;
+  
   HUD()
   {
     this.image = loadImage("hud.png");
@@ -46,11 +48,17 @@ class HUD
     textFont(this.mario, 36);
     textAlign(CENTER);
     text(this.multiplier, width - 62, height - 87);
+    
+    this.timer++;
+    if (this.timer / frameRate > 0.5) {
+      this.multiplier = 1;
+    }
   }
   
   void score()
   {
     this.score += this.base_score * this.multiplier;
+    this.timer = 0;
     
     this.multi_count++;
     this.multi_count %= 100;
