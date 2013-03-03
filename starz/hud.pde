@@ -8,7 +8,7 @@ class HUD
   
   HUD()
   {
-    this.image = loadImage("HUD.png");
+    this.image = loadImage("hud.png");
     
     this.base_score = 7777;
     this.score = 0;
