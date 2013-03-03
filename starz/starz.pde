@@ -105,7 +105,14 @@ void changeSkin(String skinName)
     skin = new Space();
   }
   coin = skin.getCoin();
-  sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
+  if (sprite != null)
+  {
+    sprite = new Sprite(skin.getSprite(), sprite.x, sprite.y);
+  }
+  else
+  {
+    sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
+  }
   background = new ScrollingBackground(skin.getBackground());
     
 }
