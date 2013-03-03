@@ -167,7 +167,7 @@ void drawGame()
     
     if (sprite.underSprite(enemy.x, enemy.y))
     {
-      hud.enemyCollide();
+      this.hud.enemyCollide();
       enemy = null;
     }
   }
@@ -206,7 +206,7 @@ void drawResult()
   background(#ffffff);
   noFill();
   stroke(255, 0, 0);
-  strokeWeight(5);
+  strokeWeight(2);
   beginShape();
   for(int i = 0; i < path.getRowCount(); i++) {
     float x = path.getFloatAt(i, 0);
