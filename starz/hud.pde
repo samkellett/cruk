@@ -42,15 +42,19 @@ class HUD
     } else {
       output = "" + this.score; //parseLong(this.score);
     }
+    fill(255);
     textAlign(LEFT);
     text(output, 20, height - 20);
-    
     textFont(this.mario, 36);
     textAlign(CENTER);
+    if (this.multiplier < 1)
+    {
+      fill(255,0,0);
+    }
     text(this.multiplier, width - 62, height - 87);
     
     this.timer++;
-    if (this.timer / frameRate > 1) {
+    if (this.timer / frameRate > 0.75 && this.multiplier > 0) {
       this.multiplier = 1;
     }
   }
@@ -65,5 +69,11 @@ class HUD
     if (this.multi_count == 0) {
       ++this.multiplier;
     }
+  }
+  
+  void enemyCollide()
+  {
+    this.score -= 500;
+    this.multiplier = -2;
   }
 }

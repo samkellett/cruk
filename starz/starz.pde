@@ -164,6 +164,12 @@ void drawGame()
     {
       enemy.randomMove();
     }
+    
+    if (sprite.underSprite(enemy.x, enemy.y))
+    {
+      this.hud.enemyCollide();
+      enemy = null;
+    }
   }
   if (enemy != null && enemy.y > 1000)
   {
@@ -200,7 +206,7 @@ void drawResult()
   background(#ffffff);
   noFill();
   stroke(255, 0, 0);
-  strokeWeight(5);
+  strokeWeight(2);
   beginShape();
   for(int i = 0; i < path.getRowCount(); i++) {
     float x = path.getFloatAt(i, 0);
