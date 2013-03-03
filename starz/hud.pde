@@ -54,7 +54,7 @@ class HUD
     text(this.multiplier, width - 62, height - 87);
     
     this.timer++;
-    if (this.timer / frameRate > 0.75 && this.multiplier > 0) {
+    if (this.timer / frameRate > 0.5 && this.multiplier > 0) {
       this.multiplier = 1;
     }
   }

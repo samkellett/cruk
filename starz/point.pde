@@ -12,7 +12,7 @@ class Point
   
   public void update()
   {
-    this.y += 7;
+    this.y += starz.speed;
   }
   
   public void render()
