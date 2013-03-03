@@ -28,13 +28,13 @@ int level;
 
 public static int scale = 80;
 public static int speed = 12;
-public static int filter = 10;
+public static int filter = 15;
 
 public static PImage coin;
 
 void setup()
 {
-  size(480, 800);
+  size(480, 800, OPENGL);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
