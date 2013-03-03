@@ -40,35 +40,9 @@ void draw()
   if (state == State.MENU) {
     drawMenu();
   } else if (state == State.GAME) {
-    background.draw();
-    if (keyPressed) {
-      if (keyCode == LEFT) {
-        sprite.left();
-      }
-      
-      if (keyCode == RIGHT) {
-        sprite.right();
-      }
-    }
-    
-    for (Point p : points) {
-      if (sprite.underSprite(p.x(), p.y())) {
-        if (!p.hidden()) {
-          this.hud.score();
-        }
-        p.hide();
-      }
-         
-      p.render();
-      p.update();
-    }
-    
-    sprite.draw();
-     
-    tracker.add(new Point(sprite.x, y));
-    y += 7;
-  
-    hud.draw();
+    drawGame();
+  } else if (state == State.RESULT) {
+    drawResult();
   }
 }
 
@@ -89,6 +63,8 @@ void mouseReleased()
   
     tracker = new ArrayList<Point>();
     y = 0;
+  } else if (state == State.RESULT) {
+    state = State.MENU;
   }
 }
 
@@ -97,8 +73,13 @@ void keyPressed()
   if (state == State.GAME) {
     if(keyCode == ALT) {
       try {
-        FileWriter writer = new FileWriter("output.txt");
-       
+        String output = dataPath("output.txt");
+        File file = new File(output);
+        if (file.exists()) {
+          file.delete();
+        }
+        
+        FileWriter writer = new FileWriter(dataPath("output.txt"));
         for(int i = 0; i < tracker.size(); i++) {
           writer.write(tracker.get(i) + System.getProperty("line.separator")); 
         }
@@ -118,7 +99,7 @@ void keyPressed()
     }
     
     if (key == 'q') {
-      state = State.MENU;
+      state = State.RESULT;
     }
   }
 }
@@ -127,7 +108,6 @@ void drawMenu()
 {
   background(#ffffff);
   image(masthead, 0, 0);
-  
   
   int i = 0;
   
@@ -148,6 +128,44 @@ void drawMenu()
       text(i, x * step + size / 2 + 27, 75 + y * step + size);
     }
   }
+}
+
+void drawGame()
+{
+  background.draw();
+  if (keyPressed) {
+    if (keyCode == LEFT) {
+      sprite.left();
+    }
+      
+    if (keyCode == RIGHT) {
+      sprite.right();
+    }
+  }
+    
+  for (Point p : points) {
+    if (sprite.underSprite(p.x(), p.y())) {
+      if (!p.hidden()) {
+        this.hud.score();
+      }
+      p.hide();
+    }
+         
+    p.render();
+    p.update();
+  }
+    
+  sprite.draw();
+     
+  tracker.add(new Point(sprite.x, y));
+  y += 7;
+  
+  hud.draw();  
+}
+
+void drawResult()
+{
+  
 }
 
 void changeSkin(String skinName)
