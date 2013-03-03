@@ -63,19 +63,11 @@ void draw()
   }
   
   sprite.draw();
-  
-  showScoreHud();
-  
+   
   tracker.add(new Point(sprite.x, y));
   y += 7;
 
   hud.draw();
-}
-
-void showScoreHud()
-{
-  image(hud,0,height - hud.height);
-  score.draw(); 
 }
 
 void keyPressed()
