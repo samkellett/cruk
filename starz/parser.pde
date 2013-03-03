@@ -32,7 +32,7 @@ class Parser
      
      for (int row = 0; row < data.getRowCount(); row++) {
        float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
-       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height*250, height);
+       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height * starz.scale, height);
        
        Point p = new Point(x, y);
        points.add(p);
