@@ -26,8 +26,8 @@ int size = 50;
 int level;
 
 public static int scale = 80;
-public static int speed = 12;
-public static int filter = 15;
+public static int speed = 9;
+public static int filter = 6;
 
 public static PImage coin;
 
@@ -43,7 +43,7 @@ void setup()
   
   state = State.MENU;
   masthead = loadImage("masthead.png");
-  logo = loadImage("start_bottom.png");
+  logo = loadImage("start_bottom.jpg");
   font = loadFont("OpenSans-48.vlw");
 }
 
@@ -133,7 +133,7 @@ void drawMenu()
       rect(x * step, 75 + y * step, size, size);
     
       fill(#ffffff);
-      text(i, x * step + size / 2 + 20, 75 + y * step + size);
+      text(i, x * step + size / 2 + 28, 75 + y * step + size);
     }
   }
 }
