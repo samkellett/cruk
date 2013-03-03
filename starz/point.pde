@@ -3,11 +3,15 @@ class Point
   float x, y;
   boolean hidden;
   
+  PImage coin;
+  
   public Point(float x, float y)
   {
     this.hidden = false;
     this.x = x;
     this.y = y;
+    
+    this.coin = loadImage("Coin3.png");
   }
   
   public void update()
@@ -22,7 +26,7 @@ class Point
       //fill(234, 286, 33);
       
       //ellipse(this.x, this.y, 15.0f, 15.0f);
-      image(starz.coin,this.x,this.y,35.0,35.0);
+      image(this.coin, this.x, this.y, 35.0, 35.0);
     }
   }
   

@@ -21,7 +21,7 @@ class Parser
   ArrayList<Point> points(String file)
   {
      data = new Table(file);
-     
+   
      for (int row = 0; row < data.getRowCount(); row++) {
        position_min = min(position_min, data.getFloatAt(row, 1));
        position_max = max(position_max, data.getFloatAt(row, 1));  
@@ -31,13 +31,15 @@ class Parser
      }
      
      for (int row = 0; row < data.getRowCount(); row++) {
-       float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
-       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height*250, height);
+       float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width + THRESHOLD, -THRESHOLD);
+       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height * 250, height);
+       
+       println(row);
        
        Point p = new Point(x, y);
        points.add(p);
      }
-     
+          
      return points;
   }
 }
