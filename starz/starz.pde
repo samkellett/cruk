@@ -22,6 +22,7 @@ HUD hud;
 
 PImage masthead;
 PImage logo;
+PImage button;
 PFont font;
 int step = 90;
 int size = 50;
@@ -47,6 +48,7 @@ void setup()
   state = State.MENU;
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
+  button = loadImage("start_circle.png");
   font = loadFont("OpenSans-48.vlw");
 }
 
@@ -154,7 +156,8 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      rect(x * step, 75 + y * step, size, size);
+      
+      image(button,x * step, 75 + y * step);
     
       fill(#ffffff);
 
@@ -189,10 +192,6 @@ void drawGame()
     p.update();
   }
   
-  sprite.update();
-  sprite.render();
-
-  
   if (frameCount % 700 == 0)
   {
     enemy = new Sprite(sprite.getSkin().getEnemy(), random(50, 400), -150);
@@ -222,6 +221,9 @@ void drawGame()
     tracker.add(new Point(sprite.x, y));
   }
   y += 7;
+  
+  sprite.update();
+  sprite.render();
   
   hud.draw();
   
