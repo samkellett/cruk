@@ -22,7 +22,6 @@ HUD hud;
 
 PImage masthead;
 PImage logo;
-PImage button;
 PFont font;
 int step = 90;
 int size = 50;
@@ -48,7 +47,6 @@ void setup()
   state = State.MENU;
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
-  button = loadImage("start_circle.png");
   font = loadFont("OpenSans-48.vlw");
 }
 
@@ -156,8 +154,7 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      
-      image(button,x * step, 75 + y * step);
+      rect(x * step, 75 + y * step, size, size);
     
       fill(#ffffff);
 
@@ -192,6 +189,10 @@ void drawGame()
     p.update();
   }
   
+  sprite.update();
+  sprite.render();
+
+  
   if (frameCount % 700 == 0)
   {
     enemy = new Sprite(sprite.getSkin().getEnemy(), random(50, 400), -150);
@@ -222,9 +223,6 @@ void drawGame()
   }
   y += 7;
   
-  sprite.update();
-  sprite.render();
-  
   hud.draw();
   
   if (y > scale * height) {
@@ -242,7 +240,6 @@ void drawGame()
 }
 
 void drawResult()
-<<<<<<< HEAD
 {
   Table path = new Table(dataPath("output.txt"));
  
@@ -257,12 +254,7 @@ void drawResult()
     vertex(x, y);
   }
   endShape();
- 
-=======
-{ 
-  background(#ffffff);
   
->>>>>>> 02f9bca61ae9d3ef2497fe453e57c185a66fa440
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
@@ -299,6 +291,14 @@ void drawResult()
     vertex(p.x(), p.y() / scale);
   }
   endShape();
+  
+//  beginShape();
+//  for(int i = 0; i < tracker.size(); i++) {
+//    Point p = tracker.get(i);
+    
+//    vertex(-p.x(), p.y() / scale);
+//  }
+//  endShape();
 }
 
 void changeSkin(int i)
