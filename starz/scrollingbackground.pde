@@ -18,4 +18,9 @@ class ScrollingBackground
     y += 7;
     y %= height;
   }
+  
+  PImage pimage()
+  {
+    return image;
+  }
 }

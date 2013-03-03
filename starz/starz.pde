@@ -8,7 +8,6 @@ ArrayList<Point> tracker;
 int y;
 
 Sprite sprite;
-Score score;
 public static PImage coin;
 
 ScrollingBackground background;
@@ -30,11 +29,11 @@ void setup()
 
   sprite = new Sprite("sprite2.gif", width / 2, height - 300);
   coin = loadImage("Coin3.png");
-  // Initialise score to 0;
-  score = new Score(0);
   
   tracker = new ArrayList<Point>();
   y = 0;
+  
+  background(255);
 }
 
 void draw()
