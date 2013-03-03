@@ -79,6 +79,12 @@ void draw()
     {
       enemy.randomMove();
     }
+    
+    if (sprite.underSprite(enemy.x, enemy.y))
+    {
+      hud.enemyCollide();
+      enemy = null;
+    }
   }
   if (enemy != null && enemy.y > 1000)
   {
