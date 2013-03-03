@@ -12,7 +12,7 @@ class Sprite
     spriteHeight = 120;
     img = sprite;
     imgInt = 0;
-    this.x = x - spriteWidth / 2;
+    this.x = x;
     this.y = y;
   }
   

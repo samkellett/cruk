@@ -101,7 +101,6 @@ void changeSkin(String skinName)
   } 
   else if (skinName == "space")
   {
-    println("Changing to space");
     skin = new Space();
   }
   coin = skin.getCoin();

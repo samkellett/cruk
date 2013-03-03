@@ -24,7 +24,7 @@ class HUD
     this.mario = loadFont("SuperMarioGalaxy-64.vlw");
     
     this.formatter = new DecimalFormat("0.#####E0");
-    this.base_score = 77777;
+    this.base_score = 1;
     this.score = 0;
     
     this.multi_count = 1;
@@ -50,7 +50,7 @@ class HUD
     text(this.multiplier, width - 62, height - 87);
     
     this.timer++;
-    if (this.timer / frameRate > 0.5) {
+    if (this.timer / frameRate > 1) {
       this.multiplier = 1;
     }
   }
