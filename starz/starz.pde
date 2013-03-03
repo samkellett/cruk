@@ -244,6 +244,7 @@ void drawGame()
 
 void drawResult()
 { 
+  background(#ffffff);
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
