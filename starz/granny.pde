@@ -81,4 +81,9 @@ class Granny implements Skin
       return enemy2;
     }
   }
+  
+  String getAudio()
+  {
+    return "sound/granny.mp3";  
+  }
 }

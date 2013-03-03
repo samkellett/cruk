@@ -81,4 +81,9 @@ class Space implements Skin
       return enemy2;
     }
   }
+  
+  String getAudio()
+  {
+    return "sound/space.mp3";  
+  }
 }

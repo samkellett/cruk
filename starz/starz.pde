@@ -1,8 +1,11 @@
+import ddf.minim.*;
 import java.io.*;
 
 State state;
-
 Parser parser;
+
+Minim minim;
+AudioPlayer audio;
 
 ArrayList<Point> points;
 
@@ -11,7 +14,6 @@ int y;
 
 Sprite sprite;
 Sprite enemy;
-PImage button;
 
 public Skin skin;
 
@@ -41,7 +43,6 @@ void setup()
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
   font = loadFont("OpenSans-48.vlw");
-  button = loadImage("start_circle.png");
 }
 
 void draw()
@@ -73,7 +74,12 @@ void mouseReleased()
   
     parser = new Parser();
     points = parser.points("S3_BAF_Chrom" + level + ".txt");
-  
+    
+    
+    minim = new Minim(this);
+    audio = minim.loadFile(sprite.getSkin().getAudio());
+    audio.play();
+    
     tracker = new ArrayList<Point>();
     y = 0;
   } else if (state == State.RESULT) {
@@ -123,10 +129,10 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      image(button, x * step, 75 + y*step);
+      rect(x * step, 75 + y * step, size, size);
     
       fill(#ffffff);
-      text(i, x * step + size / 2 + 20, 63 + y * step + size);
+      text(i, x * step + size / 2 + 27, 75 + y * step + size);
     }
   }
 }
@@ -211,7 +217,7 @@ void drawResult()
 {
   Table path = new Table(dataPath("output.txt"));
  
-  background(#f5f5f5);
+  background(#ffffff);
   noFill();
   stroke(255, 0, 0);
   strokeWeight(2);
@@ -257,7 +263,10 @@ void changeSkin(int i)
   
   coin = sprite.getSkin().getCoin();
   background.setBackground(sprite.getSkin().getBackground());
-  enemy = null;
+
+  minim.stop();  
+  audio = minim.loadFile(sprite.getSkin().getAudio());
+  audio.play();
 }
 
 void saveJourney()

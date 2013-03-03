@@ -70,4 +70,9 @@ class Bird implements Skin
   {
     return enemy;
   }
+  
+  String getAudio()
+  {
+    return "sound/bird.mp3";  
+  }
 }

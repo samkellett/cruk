@@ -4,6 +4,8 @@ interface Skin
   
   public abstract PImage getCoin();
   
+  public abstract String getAudio();
+  
   public abstract void update();
   
   public abstract void render(float x, float y);
