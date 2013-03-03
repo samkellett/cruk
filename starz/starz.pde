@@ -17,6 +17,7 @@ ScrollingBackground background;
 HUD hud;
 
 PImage masthead;
+PImage logo;
 PFont font;
 int step = 90;
 int size = 50;
@@ -36,6 +37,7 @@ void setup()
   
   state = State.MENU;
   masthead = loadImage("masthead.png");
+  logo = loadImage("start_bottom.png");
   font = loadFont("OpenSans-48.vlw");
 }
 
@@ -94,6 +96,7 @@ void drawMenu()
 {
   background(#ffffff);
   image(masthead, 0, 0);
+  image(logo, 0, height - logo.height);
   
   int i = 0;
   
