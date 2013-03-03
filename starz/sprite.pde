@@ -1,32 +1,36 @@
 class Sprite
 {
-  public PImage[] img;
+  public Skin[] skins;
+    
+  private int i;
+  public float x, y;
   
-  private int imgInt;
-  public float x,y;
-  private int spriteWidth, spriteHeight;
-  
-  public Sprite(PImage[] sprite, float x, float y)
-  {
-    spriteWidth = 60;
-    spriteHeight = 120;
-    img = sprite;
-    imgInt = 0;
+  public Sprite(float x, float y)
+  {   
+    this.skins = new Skin[3];
+    this.skins[0] = new Granny();
+    this.skins[1] = new Space();
+    //this.skins[2] = new Bird();
+    
+    this.i = 0;
     this.x = x;
     this.y = y;
   }
   
-  public void draw()
+  public void update()
   {
-    image(img[imgInt],x,y,spriteWidth,spriteHeight);
-    if (frameCount % 5 == 0)
-    {
-      if (imgInt < 3) {
-        imgInt++;
-      } else {
-        imgInt = 0;
-      }
-    }
+    this.skins[i].update();
+  }
+  
+  public void render()
+  {
+    this.skins[i].render(this.x, this.y);
+  }
+  
+  public void setPosition(float x, float y) 
+  {
+    this.x = x;
+    this.y = y;  
   }
   
   public void right()
@@ -47,6 +51,16 @@ class Sprite
   
   public boolean underSprite(float x, float y)
   {
-    return (x > this.x -30 && x < this.x + this.spriteWidth && y > this.y + 40 && y < this.y + this.spriteHeight);
+    return (x > this.x -30 && x < this.x + this.skins[i].getWidth() && y > this.y + 40 && y < this.y + this.skins[i].getHeight());
+  }
+  
+  public void setSkin(int i)
+  {
+    this.i = i;  
+  }
+  
+  public Skin getSkin()
+  {
+    return this.skins[i];  
   }
 }

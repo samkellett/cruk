@@ -23,4 +23,9 @@ class ScrollingBackground
   {
     return image;
   }
+  
+  public void setBackground(PImage image)
+  {
+    this.image = image;  
+  }
 }

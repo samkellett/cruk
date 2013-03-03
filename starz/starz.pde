@@ -18,12 +18,17 @@ public static PImage coin;
 
 void setup()
 {
-  size(480, 800, OPENGL);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
   //background(57,181,74);
-  changeSkin("granny"); //granny
+
+  sprite = new Sprite(width / 2, height - 300);
+  sprite.setSkin(0);
+
+  background = new ScrollingBackground(sprite.getSkin().getBackground());  
+  coin = sprite.getSkin().getCoin();
   hud = new HUD();
   
   parser = new Parser();
@@ -60,7 +65,8 @@ void draw()
     p.update();
   }
   
-  sprite.draw();
+  sprite.update();
+  sprite.render();
    
   tracker.add(new Point(sprite.x, y));
   y += 7;
@@ -85,34 +91,20 @@ void keyPressed()
   }
   else if (key == '1')
   {
-    changeSkin("granny");
+    changeSkin(0);
   }
   else if (key == '2')
   {
-    changeSkin("space");
+    changeSkin(1);
   }
 }
 
-void changeSkin(String skinName)
+void changeSkin(int i)
 {
-  if (skinName == "granny")
-  {
-    skin = new Granny();
-  } 
-  else if (skinName == "space")
-  {
-    skin = new Space();
-  }
-  coin = skin.getCoin();
-  if (sprite != null)
-  {
-    sprite = new Sprite(skin.getSprite(), sprite.x, sprite.y);
-  }
-  else
-  {
-    sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
-  }
-  background = new ScrollingBackground(skin.getBackground());
-    
+  sprite.setSkin(i);
+  sprite.setPosition(sprite.x, sprite.y);
+  
+  coin = sprite.getSkin().getCoin();
+  background.setBackground(sprite.getSkin().getBackground());
 }
 
