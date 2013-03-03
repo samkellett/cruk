@@ -22,6 +22,7 @@ HUD hud;
 
 PImage masthead;
 PImage logo;
+PImage button;
 PFont font;
 int step = 90;
 int size = 50;
@@ -48,6 +49,7 @@ void setup()
   state = State.MENU;
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
+  button = loadImage("start_circle.png");
   font = loadFont("OpenSans-48.vlw");
 }
 
@@ -113,6 +115,7 @@ void keyPressed()
     }
     
     if (key == 'q') {
+      minim.stop();
       state = State.RESULT;
     }
   }
@@ -155,12 +158,12 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      rect(x * step, 75 + y * step, size, size);
+      
+      image(button,x * step, 75 + y * step);
     
       fill(#ffffff);
 
-      text(i, x * step + size / 2 + 27, 75 + y * step + size);
-      text(i, x * step + size / 2 + 28, 75 + y * step + size);
+      text(i, x * step + size / 2 + 21, 64 + y * step + size);
     }
   }
 }
@@ -189,10 +192,6 @@ void drawGame()
     p.render();
     p.update();
   }
-  
-  sprite.update();
-  sprite.render();
-
   
   if (frameCount % 700 == 0)
   {
@@ -224,6 +223,9 @@ void drawGame()
   }
   y += 7;
   
+  sprite.update();
+  sprite.render();
+  
   hud.draw();
     
   if (y > scale * height) {
@@ -242,7 +244,6 @@ void drawGame()
 
 void drawResult()
 { 
-  background(#ffffff);
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
@@ -296,6 +297,7 @@ void changeSkin(int i)
   
   coin = sprite.getSkin().getCoin();
   background.setBackground(sprite.getSkin().getBackground());
+  enemy = null;
 
   minim.stop();  
   audio = minim.loadFile(sprite.getSkin().getAudio());
