@@ -6,15 +6,11 @@ class Sprite
   public float x,y;
   private int spriteWidth, spriteHeight;
   
-  public Sprite(String file, float x, float y)
+  public Sprite(PImage[] sprite, float x, float y)
   {
     spriteWidth = 60;
     spriteHeight = 120;
-    img = new PImage[4];
-    img[0] = loadImage("sprite/sprite_1.png");
-    img[1] = loadImage("sprite/sprite_2.png");
-    img[2] = loadImage("sprite/sprite_3.png");
-    img[3] = loadImage("sprite/sprite_4.png");
+    img = sprite;
     imgInt = 0;
     this.x = x - spriteWidth / 2;
     this.y = y;

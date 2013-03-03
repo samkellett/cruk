@@ -4,9 +4,9 @@ class ScrollingBackground
   PImage image;
   int y;
   
-  ScrollingBackground()
+  ScrollingBackground(PImage background)
   {
-    image = loadImage("grass_background.png");
+    image = background;
     y = 0;
   }
   

@@ -8,10 +8,13 @@ ArrayList<Point> tracker;
 int y;
 
 Sprite sprite;
-public static PImage coin;
+
+public Skin skin;
 
 ScrollingBackground background;
 HUD hud;
+
+public static PImage coin;
 
 void setup()
 {
@@ -20,15 +23,11 @@ void setup()
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
   //background(57,181,74);
-  
-  background = new ScrollingBackground();
+  changeSkin("granny"); //granny
   hud = new HUD();
   
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
-
-  sprite = new Sprite("sprite2.gif", width / 2, height - 300);
-  coin = loadImage("Coin3.png");
   
   tracker = new ArrayList<Point>();
   y = 0;
@@ -83,6 +82,31 @@ void keyPressed()
     } catch (Exception e) {
       println("Error");
     } 
+  }
+  else if (key == '1')
+  {
+    changeSkin("granny");
+  }
+  else if (key == '2')
+  {
+    changeSkin("space");
+  }
+}
+
+void changeSkin(String skinName)
+{
+  if (skinName == "granny")
+  {
+    skin = new Granny();
   } 
+  else if (skinName == "space")
+  {
+    println("Changing to space");
+    skin = new Space();
+  }
+  coin = skin.getCoin();
+  sprite = new Sprite(skin.getSprite(), width / 2, height - 300);
+  background = new ScrollingBackground(skin.getBackground());
+    
 }
 
