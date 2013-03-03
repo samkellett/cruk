@@ -29,9 +29,9 @@ int size = 50;
 
 int level;
 
-public static int scale = 80;
+public static int scale = 30;
 public static int speed = 9;
-public static int filter = 6;
+public static int filter = 12;
 public static int multiplier = 50;
 
 public static PImage coin;
@@ -221,7 +221,7 @@ void drawGame()
   {
     tracker.add(new Point(sprite.x, y));
   }
-  y += 7;
+  y += speed;
   
   sprite.update();
   sprite.render();
