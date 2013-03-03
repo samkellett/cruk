@@ -117,6 +117,10 @@ void keyPressed()
   {
     changeSkin(1);
   }
+  else if (key == '3')
+  {
+    changeSkin(2);
+  }
 }
 
 void changeSkin(int i)
