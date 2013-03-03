@@ -3,9 +3,8 @@ import java.io.*;
 Parser parser;
 
 ArrayList<Point> points;
-ArrayList<Float> tracker_xs;
-ArrayList<Float> tracker_ys;
 
+ArrayList<Point> tracker;
 int y;
 
 Sprite sprite;
@@ -30,8 +29,7 @@ void setup()
   // Initialise score to 0;
   score = new Score(0);
   
-  tracker_xs = new ArrayList<Float>();
-  tracker_ys = new ArrayList<Float>();
+  tracker = new ArrayList<Point>();
   
   y = 0;
 }
@@ -65,9 +63,7 @@ void draw()
   sprite.draw();
   score.draw();
   
-  tracker_xs.add(sprite.x);
-  tracker_ys.add((float)y);
-  
+  tracker.add(new Point(sprite.x, y));
   y += 7;
 
   //println(tracker.get(tracker.size()-1));
@@ -80,7 +76,7 @@ void keyPressed()
       FileWriter writer = new FileWriter("output.txt");
      
       for(int i = 0; i < tracker_xs.size(); i++) {
-        writer.write(tracker_xs.get(i) + "\t" + tracker_ys.get(i) + System.getProperty("line.separator")); 
+        writer.write(tracker.get(i) + System.getProperty("line.separator")); 
       }
      
       writer.close();
