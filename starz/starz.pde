@@ -60,14 +60,28 @@ void draw()
   }
   
   sprite.draw();
-  enemy.draw();
-  enemy.down();
-  if (frameCount % 3 == 0)
+  if (frameCount % 1000 == 0)
   {
-    enemy.randomMove();
+    enemy = new Sprite(skin.getEnemy(), random(50,400), -150);
+  }
+  if (enemy != null)
+  {
+    enemy.draw();
+    enemy.down();
+    if (frameCount % 3 == 0)
+    {
+      enemy.randomMove();
+    }
+  }
+  if (enemy != null && enemy.y > 1000)
+  {
+    enemy = null;
   }
    
-  tracker.add(new Point(sprite.x, y));
+  if (enemy == null)
+  {
+    tracker.add(new Point(sprite.x, y));
+  }
   y += 7;
 
   hud.draw();
