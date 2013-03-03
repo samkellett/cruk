@@ -46,7 +46,7 @@ void setup()
   
   state = State.MENU;
   masthead = loadImage("masthead.png");
-  logo = loadImage("start_bottom.jpg");
+  logo = loadImage("start_bottom.png");
   font = loadFont("OpenSans-48.vlw");
 }
 
