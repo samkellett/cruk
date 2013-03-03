@@ -309,6 +309,7 @@ void changeSkin(int i)
   
   coin = sprite.getSkin().getCoin();
   background.setBackground(sprite.getSkin().getBackground());
+  enemy = null;
 
   minim.stop();  
   audio = minim.loadFile(sprite.getSkin().getAudio());
