@@ -18,7 +18,7 @@ class Sprite
   
   public void draw()
   {
-    image(img[imgInt],x,y,spriteWidth,spriteHeight);
+    image(img[imgInt],x,y);
     if (frameCount % 5 == 0)
     {
       if (imgInt < 3)
