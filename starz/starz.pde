@@ -22,6 +22,7 @@ int step = 90;
 int size = 50;
 
 int level;
+public static int scale = 250;
 
 public static PImage coin;
 
@@ -32,6 +33,7 @@ void setup()
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
   //background(57,181,74);
+  
   state = State.MENU;
   masthead = loadImage("masthead.png");
   font = loadFont("OpenSans-48.vlw");
@@ -144,7 +146,23 @@ void drawGame()
   tracker.add(new Point(sprite.x, y));
   y += 7;
   
-  hud.draw();  
+  hud.draw();
+  
+  println(y + ": " + (scale * height) + " -- " + ((scale + 2) * height));
+  
+  if (y > scale * height) {
+    textFont(font, 36);
+    textAlign(CENTER);
+    
+    stroke(#000000);
+    fill(#ffffff);
+    text("FINISHED!", width / 2, height / 2);
+  }
+  
+  if (y > (scale + 2) * height) {
+    saveJourney();
+    state = State.RESULT;
+  }
 }
 
 void drawResult()
@@ -154,7 +172,7 @@ void drawResult()
   background(#ffffff);
   noFill();
   stroke(255, 0, 0);
-  strokeWeight(2);
+  strokeWeight(5);
   beginShape();
   for(int i = 0; i < path.getRowCount(); i++) {
     float x = path.getFloatAt(i, 0);
