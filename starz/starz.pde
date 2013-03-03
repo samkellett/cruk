@@ -21,6 +21,8 @@ PFont font;
 int step = 90;
 int size = 50;
 
+int level;
+
 public static PImage coin;
 
 void setup()
@@ -52,7 +54,7 @@ void mouseReleased()
     int x = mouseX / step;
     int y = (mouseY - 75) / step;
     
-    int level = constrain(x + (y - 1) * 4, 1, 22);
+    level = constrain(x + (y - 1) * 4, 1, 22);
     state = State.GAME;
     
     changeSkin("granny"); //granny
@@ -71,25 +73,6 @@ void mouseReleased()
 void keyPressed()
 {
   if (state == State.GAME) {
-    if(keyCode == ALT) {
-      try {
-        String output = dataPath("output.txt");
-        File file = new File(output);
-        if (file.exists()) {
-          file.delete();
-        }
-        
-        FileWriter writer = new FileWriter(dataPath("output.txt"));
-        for(int i = 0; i < tracker.size(); i++) {
-          writer.write(tracker.get(i) + System.getProperty("line.separator")); 
-        }
-       
-        writer.close();
-      } catch (Exception e) {
-        println("Error");
-      } 
-    }
-    
     if (key == '1') {
       changeSkin("granny");
     }
@@ -99,6 +82,7 @@ void keyPressed()
     }
     
     if (key == 'q') {
+      saveJourney();
       state = State.RESULT;
     }
   }
@@ -165,7 +149,45 @@ void drawGame()
 
 void drawResult()
 {
+  Table path = new Table(dataPath("output.txt"));
+ 
+  background(#ffffff);
+  noFill();
+  stroke(255, 0, 0);
+  strokeWeight(2);
+  beginShape();
+  for(int i = 0; i < path.getRowCount(); i++) {
+    float x = path.getFloatAt(i, 0);
+    float y = path.getFloatAt(i, 1)/250;
+    vertex(x, y);
+  }
+  endShape();
+ 
+  Table data = new Table("S3_BAF_Chrom" + level + ".txt");
+
+  float position_min = MAX_FLOAT;
+  float position_max = MIN_FLOAT;
+  float ratio_min = MAX_FLOAT;
+  float ratio_max = MIN_FLOAT;
+  float mean_min = MAX_FLOAT;
+  float mean_max = MIN_FLOAT;
+ 
+  for (int row = 0; row < data.getRowCount(); row++) {
+    position_min = min(position_min, data.getFloatAt(row, 1));
+    position_max = max(position_max, data.getFloatAt(row, 1));  
+
+    ratio_min = min(ratio_min, data.getFloatAt(row, 2));
+    ratio_max = max(ratio_max, data.getFloatAt(row, 2));
+  }
+ 
+  for (int row = 0; row < data.getRowCount(); row++) {
+    float y = map(data.getFloatAt(row, 1), position_min, position_max, height, 0);
+    float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width, 0);
   
+    noStroke();
+    fill(#000000);
+    ellipse(x, y, 2, 2); 
+  }
 }
 
 void changeSkin(String skinName)
@@ -182,3 +204,23 @@ void changeSkin(String skinName)
   background = new ScrollingBackground(skin.getBackground());  
 }
 
+void saveJourney()
+{
+  try {
+    String output = dataPath("output.txt");
+    File file = new File(output);
+    if (file.exists()) {
+      file.delete();
+    }
+    
+    FileWriter writer = new FileWriter(dataPath("output.txt"));
+    for(int i = 0; i < tracker.size(); i++) {
+      writer.write(tracker.get(i) + System.getProperty("line.separator")); 
+    }
+    
+    writer.close();
+  } catch (Exception e) {
+    state = State.MENU;
+    println("Error");
+  }
+}
