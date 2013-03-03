@@ -27,7 +27,6 @@ class Bird implements Skin
     background = loadImage("backgrounds/sky.png");
     
     coin = loadImage("coins/cloud.png");
-    coin1 = loadImage("coins/cloud_bigger.png");
     
     this.i = 0;
     this.image_width = 120;

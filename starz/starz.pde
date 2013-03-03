@@ -30,7 +30,7 @@ public static PImage coin;
 
 void setup()
 {
-  size(480, 800, OPENGL);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -90,6 +90,11 @@ void keyPressed()
       changeSkin(1);
     }
     
+    if (key == '3')
+    {
+      changeSkin(2);
+    }
+    
     if (key == 'q') {
       saveJourney();
       state = State.RESULT;
@@ -144,7 +149,7 @@ void drawGame()
       }
       p.hide();
     }
-         
+    
     p.render();
     p.update();
   }
@@ -152,6 +157,7 @@ void drawGame()
   sprite.update();
   sprite.render();
 
+  
   if (frameCount % 700 == 0)
   {
     enemy = new Sprite(sprite.getSkin().getEnemy(), random(50,400), -150);
@@ -239,10 +245,6 @@ void drawResult()
     noStroke();
     fill(#000000);
     ellipse(x, y, 2, 2); 
-  }
-  else if (key == '3')
-  {
-    changeSkin(2);
   }
 }
 

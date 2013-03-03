@@ -22,6 +22,7 @@ class Point
       //fill(234, 286, 33);
       
       //ellipse(this.x, this.y, 15.0f, 15.0f);
+      
       image(starz.coin,this.x,this.y,35.0,35.0);
     }
   }
