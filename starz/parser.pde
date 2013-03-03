@@ -9,7 +9,7 @@ class Parser
   float mean_min = MAX_FLOAT;
   float mean_max = MIN_FLOAT;
   
-  private int THRESHOLD = 40;
+  private int THRESHOLD = 60;
   
   ArrayList<Point> points;
   
