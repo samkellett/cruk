@@ -71,12 +71,10 @@ class Sprite
   {
     if (random(1) > 0.5) 
     {
-      left();
-      left();
+      left();      
     }
     else
     {
-      right();
       right();
     }
   }

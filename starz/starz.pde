@@ -36,7 +36,7 @@ public static PImage coin;
 
 void setup()
 {
-  size(480, 800, OPENGL);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -112,6 +112,7 @@ void keyPressed()
     }
     
     if (key == 'q') {
+      minim.stop();
       state = State.RESULT;
     }
   }

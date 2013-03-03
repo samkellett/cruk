@@ -7,6 +7,7 @@ class Bird implements Skin
   PImage coin1;
   
   PImage[] enemy;
+  PImage[] enemy1;
   
   int i, image_width, image_height;
   
@@ -14,6 +15,7 @@ class Bird implements Skin
   {
     images = new PImage[3];
     enemy = new PImage[4];
+    enemy1 = new PImage[4];
     
     images[0] = loadImage("sprites/bird/1.gif");
     images[1] = loadImage("sprites/bird/2.gif");
@@ -23,6 +25,11 @@ class Bird implements Skin
     enemy[1] = loadImage("sprites/superman/2.gif");
     enemy[2] = loadImage("sprites/superman/3.gif");
     enemy[3] = loadImage("sprites/superman/4.gif");
+
+    enemy1[0] = loadImage("sprites/plane/1.gif");
+    enemy1[1] = loadImage("sprites/plane/1.gif");
+    enemy1[2] = loadImage("sprites/plane/1.gif");
+    enemy1[3] = loadImage("sprites/plane/1.gif");
     
     background = loadImage("backgrounds/sky.png");
     
@@ -68,7 +75,7 @@ class Bird implements Skin
   
   PImage[] getEnemy()
   {
-    return enemy;
+    return (random(1) > 0.5) ? enemy : enemy1;
   }
   
   String getAudio()
