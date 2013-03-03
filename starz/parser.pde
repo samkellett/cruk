@@ -22,7 +22,7 @@ class Parser
   {
      data = new Table(file);
      
-     for (int row = 0; row < data.getRowCount(); row++) {
+     for (int row = 0; row < data.getRowCount(); row += starz.filter) {
        position_min = min(position_min, data.getFloatAt(row, 1));
        position_max = max(position_max, data.getFloatAt(row, 1));  
       

@@ -24,7 +24,10 @@ int step = 90;
 int size = 50;
 
 int level;
-public static int scale = 250;
+
+public static int scale = 80;
+public static int speed = 12;
+public static int filter = 10;
 
 public static PImage coin;
 
@@ -35,6 +38,8 @@ void setup()
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
   //background(57,181,74);
+  points = new ArrayList<Point>();
+  tracker = new ArrayList<Point>();
   
   state = State.MENU;
   masthead = loadImage("masthead.png");
@@ -60,20 +65,7 @@ void mouseReleased()
     int y = (mouseY - 75) / step;
     
     level = constrain(x + (y - 1) * 4, 1, 22);
-    state = State.GAME;
-      
-    sprite = new Sprite(width / 2, height - 300);
-    sprite.setSkin(0);
-
-    background = new ScrollingBackground(sprite.getSkin().getBackground());  
-    coin = sprite.getSkin().getCoin();
-    hud = new HUD();
-  
-    parser = new Parser();
-    points = parser.points("S3_BAF_Chrom" + level + ".txt");
-  
-    tracker = new ArrayList<Point>();
-    y = 0;
+    loadGame();
   } else if (state == State.RESULT) {
     state = State.MENU;
   }
@@ -91,10 +83,27 @@ void keyPressed()
     }
     
     if (key == 'q') {
-      saveJourney();
       state = State.RESULT;
     }
   }
+}
+
+void loadGame()
+{
+  state = State.GAME;
+  
+  sprite = new Sprite(width / 2, height - 300);
+  sprite.setSkin(0);
+  
+  background = new ScrollingBackground(sprite.getSkin().getBackground());  
+  coin = sprite.getSkin().getCoin();
+  hud = new HUD();
+
+  parser = new Parser();
+  points = parser.points("S3_BAF_Chrom" + level + ".txt");
+
+  tracker.clear();
+  y = 0;
 }
 
 void drawMenu()
@@ -154,7 +163,7 @@ void drawGame()
 
   if (frameCount % 700 == 0)
   {
-    enemy = new Sprite(sprite.getSkin().getEnemy(), random(50,400), -150);
+    enemy = new Sprite(sprite.getSkin().getEnemy(), random(50, 400), -150);
   }
   if (enemy != null)
   {
@@ -188,27 +197,13 @@ void drawGame()
   }
   
   if (y > (scale + 2) * height) {
-    saveJourney();
     state = State.RESULT;
   }
 }
 
 void drawResult()
-{
-  Table path = new Table(dataPath("output.txt"));
- 
+{ 
   background(#ffffff);
-  noFill();
-  stroke(255, 0, 0);
-  strokeWeight(5);
-  beginShape();
-  for(int i = 0; i < path.getRowCount(); i++) {
-    float x = path.getFloatAt(i, 0);
-    float y = path.getFloatAt(i, 1)/250;
-    vertex(x, y);
-  }
-  endShape();
- 
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
@@ -234,6 +229,17 @@ void drawResult()
     fill(#000000);
     ellipse(x, y, 2, 2); 
   }
+  
+  noFill();
+  stroke(255, 0, 0);
+  strokeWeight(3);
+  beginShape();
+  for(int i = 0; i < tracker.size(); i++) {
+    Point p = tracker.get(i);
+
+    vertex(p.x(), p.y() / scale);
+  }
+  endShape();
 }
 
 void changeSkin(int i)
@@ -245,23 +251,3 @@ void changeSkin(int i)
   background.setBackground(sprite.getSkin().getBackground());
 }
 
-void saveJourney()
-{
-  try {
-    String output = dataPath("output.txt");
-    File file = new File(output);
-    if (file.exists()) {
-      file.delete();
-    }
-    
-    FileWriter writer = new FileWriter(dataPath("output.txt"));
-    for(int i = 0; i < tracker.size(); i++) {
-      writer.write(tracker.get(i) + System.getProperty("line.separator")); 
-    }
-    
-    writer.close();
-  } catch (Exception e) {
-    state = State.MENU;
-    println("Error");
-  }
-}

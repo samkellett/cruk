@@ -15,7 +15,7 @@ class ScrollingBackground
     image(image, 0, y - height);
     image(image, 0, y);
     
-    y += 7;
+    y += starz.speed;
     y %= height;
   }
   
