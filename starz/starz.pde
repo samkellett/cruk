@@ -119,7 +119,7 @@ void drawMenu()
       rect(x * step, 75 + y * step, size, size);
     
       fill(#ffffff);
-      text(i, x * step + size / 2 + 27, 75 + y * step + size);
+      text(i, x * step + size / 2 + 20, 75 + y * step + size);
     }
   }
 }
@@ -203,7 +203,7 @@ void drawResult()
 {
   Table path = new Table(dataPath("output.txt"));
  
-  background(#ffffff);
+  background(#f5f5f5);
   noFill();
   stroke(255, 0, 0);
   strokeWeight(2);
