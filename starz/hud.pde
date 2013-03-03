@@ -65,7 +65,7 @@ class HUD
     this.timer = 0;
     
     this.multi_count++;
-    this.multi_count %= 100;
+    this.multi_count %= starz.multiplier;
     if (this.multi_count == 0) {
       ++this.multiplier;
     }

@@ -22,20 +22,24 @@ class Parser
   {
      data = new Table(file);
      
-     for (int row = 0; row < data.getRowCount(); row += starz.filter) {
-       position_min = min(position_min, data.getFloatAt(row, 1));
-       position_max = max(position_max, data.getFloatAt(row, 1));  
+     for (int row = 0; row < data.getRowCount(); row ++) {
+       if (row % starz.filter == 0) {
+         position_min = min(position_min, data.getFloatAt(row, 1));
+         position_max = max(position_max, data.getFloatAt(row, 1));  
       
-       ratio_min = min(ratio_min, data.getFloatAt(row, 2));
-       ratio_max = max(ratio_max, data.getFloatAt(row, 2));
+         ratio_min = min(ratio_min, data.getFloatAt(row, 2));
+         ratio_max = max(ratio_max, data.getFloatAt(row, 2));
+       }
      }
      
-     for (int row = 0; row < data.getRowCount(); row += starz.filter) {
-       float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
-       float y = map(data.getFloatAt(row, 1), position_min, position_max, -height * starz.scale, height);
+     for (int row = 0; row < data.getRowCount(); row++) {
+       if (row % starz.filter == 0) {
+         float x = map(data.getFloatAt(row, 2), ratio_min, ratio_max, width+THRESHOLD, -THRESHOLD);
+         float y = map(data.getFloatAt(row, 1), position_min, position_max, -height * starz.scale, height);
        
-       Point p = new Point(x, y);
-       points.add(p);
+         Point p = new Point(x, y);
+         points.add(p);
+       }
      }
      
      return points;

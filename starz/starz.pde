@@ -31,6 +31,7 @@ int level;
 public static int scale = 80;
 public static int speed = 9;
 public static int filter = 6;
+public static int multiplier = 50;
 
 public static PImage coin;
 
@@ -224,7 +225,7 @@ void drawGame()
   y += 7;
   
   hud.draw();
-  
+    
   if (y > scale * height) {
     textFont(font, 36);
     textAlign(CENTER);
@@ -240,21 +241,7 @@ void drawGame()
 }
 
 void drawResult()
-{
-  Table path = new Table(dataPath("output.txt"));
- 
-  background(#ffffff);
-  noFill();
-  stroke(255, 0, 0);
-  strokeWeight(2);
-  beginShape();
-  for(int i = 0; i < path.getRowCount(); i++) {
-    float x = path.getFloatAt(i, 0);
-    float y = path.getFloatAt(i, 1)/250;
-    vertex(x, y);
-  }
-  endShape();
-  
+{ 
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
@@ -292,13 +279,13 @@ void drawResult()
   }
   endShape();
   
-//  beginShape();
-//  for(int i = 0; i < tracker.size(); i++) {
-//    Point p = tracker.get(i);
+  beginShape();
+  for(int i = 0; i < tracker.size(); i++) {
+    Point p = tracker.get(i);
     
-//    vertex(-p.x(), p.y() / scale);
-//  }
-//  endShape();
+    vertex(width - p.x(), p.y() / scale);
+  }
+  endShape();
 }
 
 void changeSkin(int i)
