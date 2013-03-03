@@ -13,7 +13,7 @@ class Space implements Skin
     sprite[2] = loadImage("sprites/space/3.gif");
     sprite[3] = loadImage("sprites/space/4.gif");
     background = loadImage("backgrounds/stars.png");
-    coin = loadImage("coins/coin.png");
+    coin = loadImage("coins/star.png");
   }
   PImage[] getSprite()
   {
