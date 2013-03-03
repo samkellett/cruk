@@ -51,6 +51,6 @@ class Sprite
   
   public boolean underSprite(float x, float y)
   {
-    return (x > this.x -30 && x < this.x + this.spriteWidth && y > this.y && y < this.y + this.spriteHeight);
+    return (x > this.x -30 && x < this.x + this.spriteWidth && y > this.y + 40 && y < this.y + this.spriteHeight);
   }
 }
