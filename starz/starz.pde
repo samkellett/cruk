@@ -28,6 +28,7 @@ int step = 90;
 int size = 50;
 
 int level;
+Boolean paused;
 
 public static int scale = 30;
 public static int speed = 9;
@@ -124,6 +125,7 @@ void keyPressed()
 void loadGame()
 {
   state = State.GAME;
+  paused = false;
   
   sprite = new Sprite(width / 2, height - 300);
   sprite.setSkin(0);
@@ -170,6 +172,10 @@ void drawMenu()
 
 void drawGame()
 {
+  if (paused) {
+    return;
+  }
+  
   background.draw();
   if (keyPressed) {
     if (keyCode == LEFT) {
@@ -238,7 +244,7 @@ void drawGame()
   }
   
   if (y > (scale + 2) * height) {
-    state = State.RESULT;
+    paused = true;//state = State.RESULT;
   }
 }
 
