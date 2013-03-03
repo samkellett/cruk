@@ -10,49 +10,50 @@ int y;
 Sprite sprite;
 Score score;
 public static PImage coin;
+
 ScrollingBackground background;
+HUD hud;
 
 void setup()
 {
-  size(480, 800);
+  size(480, 800, OPENGL);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
   //background(57,181,74);
   
-  coin = loadImage("Coin3.png");
   background = new ScrollingBackground();
+  hud = new HUD();
+  
   parser = new Parser();
   points = parser.points("S3_BAF_Chrom1.txt");
 
-  sprite = new Sprite("sprite2.gif",240.0,600.0);
+  sprite = new Sprite("sprite2.gif", width / 2, height - 300);
+  coin = loadImage("Coin3.png");
   // Initialise score to 0;
   score = new Score(0);
   
   tracker = new ArrayList<Point>();
-  
   y = 0;
 }
 
 void draw()
 {
   background.draw();
-  if (keyPressed)
-  {
-     switch (keyCode)
-    {
-      case LEFT: sprite.left(); break;
-      case RIGHT: sprite.right(); break;
+  if (keyPressed) {
+    if (keyCode == LEFT) {
+      sprite.left();
+    }
+    
+    if (keyCode == RIGHT) {
+      sprite.right();
     }
   }
   
-  for(Point p : points) {
-   
-    if (sprite.underSprite(p.x(),p.y()))
-    {
-      if (!p.hidden())
-      {
-        score.score += 1;
+  for (Point p : points) {
+    if (sprite.underSprite(p.x(), p.y())) {
+      if (!p.hidden()) {
+        this.hud.score();
       }
       p.hide();
     }
@@ -60,13 +61,14 @@ void draw()
     p.render();
     p.update();
   }
+  
   sprite.draw();
   score.draw();
   
   tracker.add(new Point(sprite.x, y));
   y += 7;
 
-  //println(tracker.get(tracker.size()-1));
+  hud.draw();
 }
 
 void keyPressed()
@@ -75,13 +77,14 @@ void keyPressed()
     try {
       FileWriter writer = new FileWriter("output.txt");
      
-      for(int i = 0; i < tracker_xs.size(); i++) {
+      for(int i = 0; i < tracker.size(); i++) {
         writer.write(tracker.get(i) + System.getProperty("line.separator")); 
       }
      
       writer.close();
-      println("Done");
-    }catch (Exception e) {println("Fucked");} 
+    } catch (Exception e) {
+      println("Error");
+    } 
   } 
 }
 

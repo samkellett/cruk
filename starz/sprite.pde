@@ -16,7 +16,7 @@ class Sprite
     img[2] = loadImage("sprite/sprite_3.png");
     img[3] = loadImage("sprite/sprite_4.png");
     imgInt = 0;
-    this.x = x;
+    this.x = x - spriteWidth / 2;
     this.y = y;
   }
   
