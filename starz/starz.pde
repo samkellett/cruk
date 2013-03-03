@@ -161,8 +161,7 @@ void drawMenu()
     
       fill(#ffffff);
 
-      text(i, x * step + size / 2 + 27, 75 + y * step + size);
-      text(i, x * step + size / 2 + 28, 75 + y * step + size);
+      text(i, x * step + size / 2 + 21, 64 + y * step + size);
     }
   }
 }
