@@ -12,7 +12,7 @@ class Sprite
     this.skins = new Skin[3];
     this.skins[0] = new Granny();
     this.skins[1] = new Space();
-    //this.skins[2] = new Bird();
+    this.skins[2] = new Bird();
     
     this.i = 0;
     this.x = x;

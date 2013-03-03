@@ -11,6 +11,7 @@ int y;
 
 Sprite sprite;
 Sprite enemy;
+PImage button;
 
 public Skin skin;
 
@@ -33,7 +34,7 @@ public static PImage coin;
 
 void setup()
 {
-  size(480, 800, OPENGL);
+  size(480, 800);
   frameRate(60);
   //CRUK Green: 57,181,74
   //CRUK Pink: 243,20,235
@@ -45,6 +46,7 @@ void setup()
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
   font = loadFont("OpenSans-48.vlw");
+  button = loadImage("start_circle.png");
 }
 
 void draw()
@@ -80,6 +82,11 @@ void keyPressed()
     
     if (key == '2') {
       changeSkin(1);
+    }
+    
+    if (key == '3')
+    {
+      changeSkin(2);
     }
     
     if (key == 'q') {
@@ -125,10 +132,10 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      rect(x * step, 75 + y * step, size, size);
+      image(button, x * step, 75 + y*step);
     
       fill(#ffffff);
-      text(i, x * step + size / 2 + 27, 75 + y * step + size);
+      text(i, x * step + size / 2 + 20, 63 + y * step + size);
     }
   }
 }
@@ -153,7 +160,7 @@ void drawGame()
       }
       p.hide();
     }
-         
+    
     p.render();
     p.update();
   }
@@ -161,6 +168,7 @@ void drawGame()
   sprite.update();
   sprite.render();
 
+  
   if (frameCount % 700 == 0)
   {
     enemy = new Sprite(sprite.getSkin().getEnemy(), random(50, 400), -150);
@@ -172,6 +180,12 @@ void drawGame()
     if (frameCount % 3 == 0)
     {
       enemy.randomMove();
+    }
+    
+    if (sprite.underSprite(enemy.x, enemy.y))
+    {
+      this.hud.enemyCollide();
+      enemy = null;
     }
   }
   if (enemy != null && enemy.y > 1000)
@@ -204,6 +218,7 @@ void drawGame()
 void drawResult()
 { 
   background(#ffffff);
+  
   Table data = new Table("S3_BAF_Chrom" + level + ".txt");
 
   float position_min = MAX_FLOAT;
@@ -249,5 +264,6 @@ void changeSkin(int i)
   
   coin = sprite.getSkin().getCoin();
   background.setBackground(sprite.getSkin().getBackground());
+  enemy = null;
 }
 
