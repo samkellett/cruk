@@ -11,6 +11,7 @@ int y;
 
 Sprite sprite;
 Sprite enemy;
+PImage button;
 
 public Skin skin;
 
@@ -40,6 +41,7 @@ void setup()
   masthead = loadImage("masthead.png");
   logo = loadImage("start_bottom.png");
   font = loadFont("OpenSans-48.vlw");
+  button = loadImage("start_circle.png");
 }
 
 void draw()
@@ -116,10 +118,10 @@ void drawMenu()
       
       noStroke();
       fill(#2e008b);
-      rect(x * step, 75 + y * step, size, size);
+      image(button, x * step, 75 + y*step);
     
       fill(#ffffff);
-      text(i, x * step + size / 2 + 20, 75 + y * step + size);
+      text(i, x * step + size / 2 + 20, 63 + y * step + size);
     }
   }
 }
