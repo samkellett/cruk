@@ -12,7 +12,7 @@ N.B. when an enemy is presented to the player, we stop recording movement, as it
 Gameplay Instructions
 ====
 
-Select a level from the menu.
+Select a level from the menu to start.
 
 Use the arrow keys to control the motion of the player (could use accelerometer on mobile devices)
 
